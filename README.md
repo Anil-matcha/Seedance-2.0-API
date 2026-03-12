@@ -101,7 +101,9 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-i2v" \
 
 ---
 
-## 📖 API Documentation
+## 📖 Documentation & Guides
+
+For a comprehensive walkthrough, check out the **[Seedance 2.0 API: Complete Developer Guide](https://medium.com/@anilmatcha/seedance-2-0-api-complete-developer-guide-text-to-video-image-to-video-python-sdk-1479f5e5491f)** on Medium. This guide covers advanced use cases, prompt engineering, and best practices for high-quality video generation.
 
 | Method | Parameters | Description |
 | :--- | :--- | :--- |
@@ -114,6 +116,7 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-i2v" \
 ---
 
 ## 🔗 Official Resources
+- **Developer Guide**: [Seedance 2.0 API: Complete Tutorial](https://medium.com/@anilmatcha/seedance-2-0-api-complete-developer-guide-text-to-video-image-to-video-python-sdk-1479f5e5491f)
 - **Playground**: [Seedance 2.0 I2V Playground](https://muapi.ai/playground/seedance-v2.0-i2v)
 - **Extension Tool**: [Seedance 2.0 Extend Playground](https://muapi.ai/playground/seedance-v2.0-extend)
 - **API Provider**: [MuAPI.ai](https://muapi.ai)
