@@ -6,6 +6,8 @@
 
 The most comprehensive and official Python wrapper for the **Seedance 2.0 API** (developed by ByteDance), delivered via [muapi.ai](https://muapi.ai). Generate cinematic, high-fidelity AI videos from text prompts and static images with the world's most advanced video generation model.
 
+Here is a comprehensive guide on using Seedance 2.0 API https://medium.com/@anilmatcha/seedance-2-0-api-complete-developer-guide-text-to-video-image-to-video-python-sdk-1479f5e5491f
+
 ## 🚀 Why Use Seedance 2.0 API?
 
 Seedance 2.0 is the industry-leading **Sora alternative** developed by ByteDance, offering unparalleled video quality and motion consistency.
