@@ -79,6 +79,29 @@ class SeedanceAPI:
         }
         return self._post_request(endpoint, payload)
 
+    def video_edit(self, prompt, video_urls, images_list=None, aspect_ratio="16:9", quality="basic", remove_watermark=False):
+        """
+        Submits a Seedance 2.0 Video-Edit generation task.
+        
+        :param prompt: The text prompt describing the edit.
+        :param video_urls: A list of video URLs to edit.
+        :param images_list: Optional list of image URLs.
+        :param aspect_ratio: Video aspect ratio.
+        :param quality: Output quality.
+        :param remove_watermark: Whether to remove watermark.
+        :return: JSON response from the Seedance 2.0 API.
+        """
+        endpoint = f"{self.base_url}/seedance-v2.0-video-edit"
+        payload = {
+            "prompt": prompt,
+            "video_urls": video_urls,
+            "images_list": images_list or [],
+            "aspect_ratio": aspect_ratio,
+            "quality": quality,
+            "remove_watermark": remove_watermark
+        }
+        return self._post_request(endpoint, payload)
+
     def _post_request(self, endpoint, payload):
         response = requests.post(endpoint, json=payload, headers=self.headers)
         response.raise_for_status()

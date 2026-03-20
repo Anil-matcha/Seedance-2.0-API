@@ -21,6 +21,7 @@ Seedance 2.0 is the industry-leading **Sora alternative** developed by ByteDance
 
 - ✅ **Seedance 2.0 Text-to-Video (T2V)**: Transform complex descriptive prompts into stunning 15s AI video clips.
 - ✅ **Seedance 2.0 Image-to-Video (I2V)**: Animate any static image with precise motion control using `images_list`.
+- ✅ **Seedance 2.0 Video-Edit**: Edit existing videos using text prompts and reference images for stylized results.
 - ✅ **Video Extension**: Seamlessly extend existing clips while maintaining consistent style and characters.
 - ✅ **High-Resolution Output**: Support for `basic` and `high` (2K) quality settings.
 - ✅ **Flexible Aspect Ratios**: Optimized for `16:9`, `9:16` (TikTok/Reels), `4:3`, and `3:4`.
@@ -101,6 +102,22 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-i2v" \
   }'
 ```
 
+### 3. Seedance 2.0 Video-Edit
+**Endpoint**: `POST https://api.muapi.ai/api/v1/seedance-v2.0-video-edit`
+```bash
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-video-edit" \
+  --header "Content-Type: application/json" \
+  --header "x-api-key: YOUR_API_KEY" \
+  --data-raw '{
+      "prompt": "The cat walks through a garden",
+      "video_urls": ["https://example.com/video.mp4"],
+      "images_list": ["https://example.com/image.jpg"],
+      "aspect_ratio": "16:9",
+      "quality": "basic",
+      "remove_watermark": false
+  }'
+```
+
 ---
 
 ## 📖 Documentation & Guides
@@ -111,6 +128,7 @@ For a comprehensive walkthrough, check out the **[Seedance 2.0 API: Complete Dev
 | :--- | :--- | :--- |
 | `text_to_video` | `prompt`, `aspect_ratio`, `duration`, `quality` | Generate video from text prompts using Seedance 2.0. |
 | `image_to_video` | `prompt`, `images_list`, `aspect_ratio`, `duration`, `quality` | Animate images using the Seedance 2.0 I2V model. |
+| `video_edit` | `prompt`, `video_urls`, `images_list`, `aspect_ratio`, `quality`, `remove_watermark` | Edit existing videos with prompts and images. |
 | `extend_video` | `request_id`, `prompt`, `duration`, `quality` | Extend an existing Seedance video segment. |
 | `get_result` | `request_id` | Check task status for the Seedance API. |
 | `wait_for_completion` | `request_id`, `poll_interval`, `timeout` | Blocking helper for Seedance generation tasks. |
