@@ -1,10 +1,10 @@
-# Seedance 2.0 API: Official Python Wrapper for ByteDance's AI Video Generator
+# Seedance 2.0 API: Python Wrapper for ByteDance's AI Video Generator
 
 [![GitHub stars](https://img.shields.io/github/stars/Anil-matcha/Seedance-2.0-API.svg)](https://github.com/Anil-matcha/Seedance-2.0-API/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 
-The most comprehensive and official Python wrapper for the **Seedance 2.0 API** (developed by ByteDance), delivered via [muapi.ai](https://muapi.ai). Generate cinematic, high-fidelity AI videos from text prompts and static images with the world's most advanced video generation model.
+The most comprehensive Python wrapper for the **Seedance 2.0 API** (developed by ByteDance), delivered via [muapi.ai](https://muapi.ai). Generate cinematic, high-fidelity AI videos from text prompts and static images with the world's most advanced video generation model.
 
 Here is a comprehensive guide on using Seedance 2.0 API https://medium.com/@anilmatcha/seedance-2-0-api-complete-developer-guide-text-to-video-image-to-video-python-sdk-1479f5e5491f
 
