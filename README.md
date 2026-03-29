@@ -19,8 +19,10 @@ Seedance 2.0 is the industry-leading **Sora alternative** developed by ByteDance
 
 ## 🌟 Key Features of Seedance 2.0 API
 
-- ✅ **Seedance 2.0 Text-to-Video (T2V)**: Transform complex descriptive prompts into stunning 15s AI video clips.
+- ✅ **Seedance 2.0 Text-to-Video (T2V)**: Transform complex descriptive prompts into stunning AI video clips.
 - ✅ **Seedance 2.0 Image-to-Video (I2V)**: Animate any static image with precise motion control using `images_list`.
+- ✅ **Seedance 2.0 Omni-Reference**: Condition a video on any combination of image, video, and audio references in one request.
+- ✅ **Seedance 2.0 Character**: Generate a reusable fictional character sheet from reference photos and reference it inline in any prompt.
 - ✅ **Seedance 2.0 Video-Edit**: Edit existing videos using text prompts and reference images for stylized results.
 - ✅ **Video Extension**: Seamlessly extend existing clips while maintaining consistent style and characters.
 - ✅ **High-Resolution Output**: Support for `basic` and `high` (2K) quality settings.
@@ -75,6 +77,9 @@ print(f"Success! View your Seedance 2.0 video here: {result['url']}")
 
 ### 1. Seedance 2.0 Text-to-Video (T2V)
 **Endpoint**: `POST https://api.muapi.ai/api/v1/seedance-v2.0-t2v`
+
+Supports `@character:<id>` inline in the prompt — see [Character Workflow](#-character-workflow) below.
+
 ```bash
 curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-t2v" \
   --header "Content-Type: application/json" \
@@ -89,6 +94,9 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-t2v" \
 
 ### 2. Seedance 2.0 Image-to-Video (I2V)
 **Endpoint**: `POST https://api.muapi.ai/api/v1/seedance-v2.0-i2v`
+
+Reference images with `@image1`, `@image2`, etc. in the prompt. Supports `@character:<id>` — characters are automatically appended to `images_list`.
+
 ```bash
 curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-i2v" \
   --header "Content-Type: application/json" \
@@ -102,7 +110,41 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-i2v" \
   }'
 ```
 
-### 3. Seedance 2.0 Video-Edit
+### 3. Seedance 2.0 Omni-Reference
+**Endpoint**: `POST https://api.muapi.ai/api/v1/seedance-2.0-omni-reference`
+
+Condition a single video generation on any combination of image, video, and audio references. Use `@character:<id>` inline in the prompt to inject a character (see section below).
+
+```bash
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.0-omni-reference" \
+  --header "Content-Type: application/json" \
+  --header "x-api-key: YOUR_API_KEY" \
+  --data-raw '{
+      "prompt": "A dramatic chase scene through a neon city",
+      "aspect_ratio": "16:9",
+      "duration": 5,
+      "images_list": ["https://example.com/scene_ref.jpg"],
+      "video_files": ["https://example.com/style_ref.mp4"]
+  }'
+```
+
+### 4. Seedance 2.0 Character (Reusable Character Sheets)
+**Endpoint**: `POST https://api.muapi.ai/api/v1/seedance-2-character`
+
+Create a fictional character from real reference photos. Once the character sheet is generated you can reference it in any T2V, I2V, or Omni-Reference prompt using `@character:<request_id>`.
+
+```bash
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2-character" \
+  --header "Content-Type: application/json" \
+  --header "x-api-key: YOUR_API_KEY" \
+  --data-raw '{
+      "images_list": ["https://example.com/person.jpg"],
+      "outfit_description": "cyberpunk jacket with neon accents",
+      "character_name": "Nova"
+  }'
+```
+
+### 5. Seedance 2.0 Video-Edit
 **Endpoint**: `POST https://api.muapi.ai/api/v1/seedance-v2.0-video-edit`
 ```bash
 curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-video-edit" \
@@ -120,14 +162,56 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-v2.0-video-
 
 ---
 
+## 🎭 Character Workflow
+
+Create a reusable fictional character from reference photos and inject it into any video prompt using `@character:<id>`.
+
+```python
+from seedance_api import SeedanceAPI
+api = SeedanceAPI()
+
+# Step 1 — generate a character sheet
+char = api.create_character(
+    images_list=["https://example.com/person.jpg"],
+    outfit_description="cyberpunk jacket with neon accents, glowing visor",
+    character_name="Nova"
+)
+char_id = char["request_id"]
+print(f"Character ID: {char_id}")
+api.wait_for_completion(char_id)  # wait for sheet to render
+
+# Step 2 — use the character in a T2V prompt
+video = api.text_to_video(
+    prompt=f"@character:{char_id} rides a motorcycle through a neon-lit city at night, cinematic",
+    aspect_ratio="16:9",
+    duration=5,
+)
+result = api.wait_for_completion(video["request_id"])
+print(f"Video: {result['url']}")
+
+# Multi-character example
+char2_id = "another-completed-character-request-id"
+video2 = api.text_to_video(
+    prompt=f"@character:{char_id} and @character:{char2_id} face off in a neon-lit arena, dramatic camera angles",
+    aspect_ratio="16:9",
+    duration=5,
+)
+```
+
+> **Tip**: `@character:<id>` works in T2V, I2V, and Omni-Reference prompts. Multiple characters can be referenced in a single prompt.
+
+---
+
 ## 📖 Documentation & Guides
 
 For a comprehensive walkthrough, check out the **[Seedance 2.0 API: Complete Developer Guide](https://medium.com/@anilmatcha/seedance-2-0-api-complete-developer-guide-text-to-video-image-to-video-python-sdk-1479f5e5491f)** on Medium. This guide covers advanced use cases, prompt engineering, and best practices for high-quality video generation.
 
 | Method | Parameters | Description |
 | :--- | :--- | :--- |
-| `text_to_video` | `prompt`, `aspect_ratio`, `duration`, `quality` | Generate video from text prompts using Seedance 2.0. |
-| `image_to_video` | `prompt`, `images_list`, `aspect_ratio`, `duration`, `quality` | Animate images using the Seedance 2.0 I2V model. |
+| `text_to_video` | `prompt`, `aspect_ratio`, `duration`, `quality` | Generate video from text. Supports `@character:<id>` in prompt. |
+| `image_to_video` | `prompt`, `images_list`, `aspect_ratio`, `duration`, `quality` | Animate images. Supports `@image1`/`@character:<id>` in prompt. |
+| `omni_reference` | `prompt`, `aspect_ratio`, `duration`, `images_list`, `video_files`, `audio_files` | Multi-modal reference video generation. |
+| `create_character` | `images_list`, `outfit_description`, `character_name` | Create a reusable fictional character sheet from reference photos. |
 | `video_edit` | `prompt`, `video_urls`, `images_list`, `aspect_ratio`, `quality`, `remove_watermark` | Edit existing videos with prompts and images. |
 | `extend_video` | `request_id`, `prompt`, `duration`, `quality` | Extend an existing Seedance video segment. |
 | `get_result` | `request_id` | Check task status for the Seedance API. |
