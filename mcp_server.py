@@ -141,6 +141,17 @@ def i2v_480p(prompt: str, images_list: list[str], aspect_ratio: str = "16:9", du
     return json.dumps(result, indent=2)
 
 @mcp.tool()
+def upload_file(file_path: str) -> str:
+    """
+    Upload a local file (image or video) to MuAPI for use in generation tasks.
+    
+    :param file_path: Local path to the file.
+    """
+    api = get_api()
+    result = api.upload_file(file_path)
+    return json.dumps(result, indent=2)
+
+@mcp.tool()
 def get_task_status(request_id: str) -> str:
     """
     Check the status and get results of a generation task.

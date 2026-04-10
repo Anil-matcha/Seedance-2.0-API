@@ -331,6 +331,27 @@ class SeedanceAPI:
         response.raise_for_status()
         return response.json()
 
+    def upload_file(self, file_path):
+        """
+        Uploads a file (image or video) to MuAPI for use in generation tasks.
+        
+        :param file_path: Path to the local file to upload.
+        :return: JSON response from the MuAPI containing the URL of the uploaded file.
+        """
+        endpoint = f"{self.base_url}/upload_file"
+        
+        # Omit Content-Type to let requests set the multipart boundary automatically
+        headers = {
+            "x-api-key": self.api_key
+        }
+        
+        with open(file_path, "rb") as file_data:
+            files = {"file": file_data}
+            response = requests.post(endpoint, headers=headers, files=files)
+            
+        response.raise_for_status()
+        return response.json()
+
     def get_result(self, request_id):
         """
         Polls for the result of a generation task.

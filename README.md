@@ -24,6 +24,7 @@ Seedance 2.0 is the industry-leading **Sora alternative** developed by ByteDance
 - ✅ **Seedance 2.0 Omni-Reference**: Condition a video on any combination of image, video, and audio references in one request.
 - ✅ **Seedance 2.0 Character**: Generate a multi-panel character sheet (front, back, side, action pose, expressions) from 1–3 reference photos. Use `@character:<id>` inline in any prompt, or pass the sheet directly as an anchor image for tighter face fidelity via `consistent_video()`.
 - ✅ **Seedance 2.0 Video-Edit**: Edit existing videos using text prompts and reference images for stylized results.
+- ✅ **File Upload**: Directly upload local images and videos using the `upload_file` method, supporting seamless use in generation tasks.
 - ✅ **Video Extension**: Seamlessly extend existing clips while maintaining consistent style and characters.
 - ✅ **High-Resolution Output**: Support for `basic` and `high` (2K) quality settings.
 - ✅ **Flexible Aspect Ratios**: Optimized for `16:9`, `9:16` (TikTok/Reels), `4:3`, and `3:4`.
@@ -271,6 +272,7 @@ For a comprehensive walkthrough, check out the **[Seedance 2.0 API: Complete Dev
 | `text_to_video_480p`| `prompt`, `aspect_ratio`, `duration`, `quality` | Generate a 480p video from text (faster/cheaper). |
 | `image_to_video_480p`| `prompt`, `images_list`, `aspect_ratio`, `duration`, `quality` | Generate a 480p video from an image (faster/cheaper). |
 | `extend_video` | `request_id`, `prompt`, `duration`, `quality` | Extend an existing Seedance video segment. |
+| `upload_file` | `file_path` | Upload a local file (image or video) to MuAPI for use in generation tasks. |
 | `get_result` | `request_id` | Check task status for the Seedance API. |
 | `wait_for_completion` | `request_id`, `poll_interval`, `timeout` | Blocking helper for Seedance generation tasks. |
 
