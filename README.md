@@ -1,5 +1,6 @@
 # Seedance 2.0 API: Python Wrapper for ByteDance's AI Video Generator
 
+[![PyPI version](https://img.shields.io/pypi/v/seedance-2-api.svg)](https://pypi.org/project/seedance-2-api/)
 [![GitHub stars](https://img.shields.io/github/stars/Anil-matcha/Seedance-2.0-API.svg)](https://github.com/Anil-matcha/Seedance-2.0-API/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
@@ -33,6 +34,12 @@ Seedance 2.0 is the industry-leading **Sora alternative** developed by ByteDance
 
 ## 🛠 Installation
 
+### Via Pip (Recommended)
+```bash
+pip install seedance-2-api
+```
+
+### From Source
 ```bash
 # Clone the Seedance 2.0 API repository
 git clone https://github.com/Anil-matcha/Seedance-2.0-API.git
@@ -40,6 +47,7 @@ cd Seedance-2.0-API
 
 # Install required dependencies
 pip install -r requirements.txt
+```stall -r requirements.txt
 ```
 
 ### Configuration
