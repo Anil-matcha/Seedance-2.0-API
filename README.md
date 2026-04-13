@@ -9,7 +9,9 @@ The most comprehensive Python wrapper for the **Seedance 2.0 API** (developed by
 
 Here is a comprehensive guide on using Seedance 2.0 API https://medium.com/@anilmatcha/seedance-2-0-api-complete-developer-guide-text-to-video-image-to-video-python-sdk-1479f5e5491f
 
-> 🐎 **Looking for the #1 ranked model?** [HappyHorse 1.0](https://github.com/Anil-matcha/HappyHorse-1.0-API) by Alibaba just topped the Artificial Analysis leaderboard (1392 Elo I2V) with native 1080p output and integrated audio-video generation — check it out!
+> 🌊 **Also explore these top AI video models:**
+> - 🐎 [HappyHorse 1.0 API](https://github.com/Anil-matcha/HappyHorse-1.0-API) — Alibaba's #1 ranked model (1392 Elo I2V) with native 1080p & integrated audio
+> - 🎬 [Veo 4 API](https://github.com/Anil-matcha/Veo-4-API) — Google DeepMind's native 4K model with audio, character consistency & camera controls
 
 ## 🚀 Why Use Seedance 2.0 API?
 
