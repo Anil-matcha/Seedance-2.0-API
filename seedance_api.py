@@ -326,6 +326,86 @@ class SeedanceAPI:
         }
         return self._post_request(endpoint, payload)
 
+    def vip_text_to_video_1080p(self, prompt, aspect_ratio="16:9", duration=5):
+        """
+        Submits a Seedance 2 VIP Text-to-Video 1080p task (coming soon).
+
+        VIP tier — priority queue, low censorship, full 1080p output.
+
+        :param prompt: Text description of the video to generate.
+        :param aspect_ratio: Output aspect ratio (e.g. '16:9', '9:16', '1:1').
+        :param duration: Video duration in seconds (4–15).
+        :return: JSON response with request_id.
+        """
+        endpoint = f"{self.base_url}/sd-2-vip-text-to-video-1080p"
+        payload = {
+            "prompt": prompt,
+            "aspect_ratio": aspect_ratio,
+            "duration": duration,
+        }
+        return self._post_request(endpoint, payload)
+
+    def vip_text_to_video_fast_1080p(self, prompt, aspect_ratio="16:9", duration=5):
+        """
+        Submits a Seedance 2 VIP Text-to-Video 1080p Fast task (coming soon).
+
+        VIP fast tier — fastest 1080p text-to-video with priority queue and low censorship.
+
+        :param prompt: Text description of the video to generate.
+        :param aspect_ratio: Output aspect ratio (e.g. '16:9', '9:16', '1:1').
+        :param duration: Video duration in seconds (4–15).
+        :return: JSON response with request_id.
+        """
+        endpoint = f"{self.base_url}/sd-2-vip-text-to-video-fast-1080p"
+        payload = {
+            "prompt": prompt,
+            "aspect_ratio": aspect_ratio,
+            "duration": duration,
+        }
+        return self._post_request(endpoint, payload)
+
+    def vip_image_to_video_1080p(self, prompt, images_list, aspect_ratio="16:9", duration=5):
+        """
+        Submits a Seedance 2 VIP Image-to-Video 1080p task (coming soon).
+
+        VIP tier — priority queue, low censorship, full 1080p output.
+
+        :param prompt: Optional text prompt guiding the motion.
+        :param images_list: List containing the start-frame image URL.
+        :param aspect_ratio: Output aspect ratio (e.g. '16:9', '9:16', '1:1').
+        :param duration: Video duration in seconds (4–15).
+        :return: JSON response with request_id.
+        """
+        endpoint = f"{self.base_url}/sd-2-vip-image-to-video-1080p"
+        payload = {
+            "prompt": prompt,
+            "images_list": images_list,
+            "aspect_ratio": aspect_ratio,
+            "duration": duration,
+        }
+        return self._post_request(endpoint, payload)
+
+    def vip_image_to_video_fast_1080p(self, prompt, images_list, aspect_ratio="16:9", duration=5):
+        """
+        Submits a Seedance 2 VIP Image-to-Video 1080p Fast task (coming soon).
+
+        VIP fast tier — fastest 1080p image animation with priority queue and low censorship.
+
+        :param prompt: Optional text prompt guiding the motion.
+        :param images_list: List containing the start-frame image URL.
+        :param aspect_ratio: Output aspect ratio (e.g. '16:9', '9:16', '1:1').
+        :param duration: Video duration in seconds (4–15).
+        :return: JSON response with request_id.
+        """
+        endpoint = f"{self.base_url}/sd-2-vip-image-to-video-fast-1080p"
+        payload = {
+            "prompt": prompt,
+            "images_list": images_list,
+            "aspect_ratio": aspect_ratio,
+            "duration": duration,
+        }
+        return self._post_request(endpoint, payload)
+
     def _post_request(self, endpoint, payload):
         response = requests.post(endpoint, json=payload, headers=self.headers)
         response.raise_for_status()
